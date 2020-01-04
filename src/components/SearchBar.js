@@ -1,15 +1,11 @@
 import React from 'react';
 
 class SearchBar extends React.Component{
-    constructor(){
-        super();
-        
-    }
     render(){
         return(
-            <div>
-                <input className="search-bar" type="text" onKeyDown={(event)=>this.props.search(event)}></input>
-            </div>
+       
+                <input className="search-bar" placeholder="Search.." type="text" onChange={(e)=>this.props.search(e)}></input>
+           
             
         )
     }

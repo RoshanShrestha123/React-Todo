@@ -73,12 +73,12 @@
 .listCollection{
   padding: 10px;
   float: right;
-  width: 97%;
+  width: 95%;
 }
 .tag{
   float: left;
   width: 5px;
-  height: 50px;
+  height: 45px;
   background-color: red;
 }
 .listDetailchecked{

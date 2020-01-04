@@ -14,20 +14,15 @@ class App extends React.Component {
     this.state={
       dataList: data
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.setData = this.setData.bind(this);
-    this.searchList = this.searchList.bind(this);
-    
   }
   //check item here
-  handleChange(id){
+  handleChange= (id) =>{
     this.setState(prevState=>{
       const newList = prevState.dataList.map(item=>{
         if(item.id===id){
           return{
             ...item,
             complete:!item.complete
-
           }
           
         }
@@ -40,14 +35,15 @@ class App extends React.Component {
      
   }
   //insert data here
-  setData(e){
+  setData=(e)=>{
+    console.log(e.target.value);
     const ENTER = 13;
     const newDataList={
       id:uuid.v4(),
       title:e.target.value,
       complete:false
     }
-    if(e.keyCode===ENTER && e.target.value!=''){
+    if(e.keyCode===ENTER && e.target.value!==''){
       this.setState({
         dataList: [...this.state.dataList,newDataList]
       });
@@ -56,11 +52,18 @@ class App extends React.Component {
   }
 
   //search List
-  searchList(e){
-    this.setState((prevState)=>{
-      
+  searchList=(e)=>{
+    const searchArr = this.state.dataList.filter(item => {
+      return item.title.toLowerCase().includes(e.target.value.toLowerCase());
+        
     });
+    const searchArrNew = searchArr.map(item=>{
+      return item;
+    });
+
+    
   }
+
   render(){
     const listComponent = this.state.dataList.map(item=>{
       return(
@@ -71,9 +74,9 @@ class App extends React.Component {
     <div className="App">
       <Header/>
       <SearchBar search={this.searchList}/>
-      
-      {listComponent}
       <AddTodo insertData = {this.setData}/>
+      {listComponent}
+      
     </div>
   );}
 }
