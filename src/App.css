@@ -1,11 +1,13 @@
-.App {
-  text-align: center;
-}
 
+.App{
+  width: 80%;
+  margin: 0 auto;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -27,6 +29,74 @@
 .App-link {
   color: #61dafb;
 }
+.header{
+  width: 100%;
+  margin: 0 auto;
+  color: white;
+  line-height: 80px;
+  padding: 10px;
+}
+
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}
+.add-todo-wrapper{
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 5px;
+  clear: both;
+}
+.input-field{
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 10px; 
+  font-size: 15px;
+  
+}
+
+.list{
+  
+  background-color: white;
+  width: 100%;
+ 
+  overflow: auto;
+  margin: 0 auto;
+  margin-top:5px ;
+  border: 1px solid white;
+  border-radius: 5px;
+  
+}
+.listCollection{
+  padding: 10px;
+  float: right;
+  width: 97%;
+}
+.tag{
+  float: left;
+  width: 5px;
+  height: 50px;
+  background-color: red;
+}
+.listDetailchecked{
+  font-size: 12px;
+  float: left;
+  text-decoration: line-through;
+  transition: 200ms;
+
+}
+.listDetailunchecked{
+  font-size: 20px;
+  float: left;
+  transition: 100ms;
+}
+.checkBox{
+  float: right;
+}
+
 
 @keyframes App-logo-spin {
   from {

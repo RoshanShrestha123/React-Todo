@@ -1,26 +1,81 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import List from './components/List';
+import data from './data';
+import Header from './components/Header';
+import AddTodo from './components/AddTodo';
+import SearchBar from './components/SearchBar';
+import uuid from 'uuid';
 
-function App() {
-  return (
+
+class App extends React.Component {
+  constructor(){
+    super();
+    this.state={
+      dataList: data
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.setData = this.setData.bind(this);
+    this.searchList = this.searchList.bind(this);
+    
+  }
+  //check item here
+  handleChange(id){
+    this.setState(prevState=>{
+      const newList = prevState.dataList.map(item=>{
+        if(item.id===id){
+          return{
+            ...item,
+            complete:!item.complete
+
+          }
+          
+        }
+        return item;
+      });
+      return{
+        dataList: newList
+      }
+    });
+     
+  }
+  //insert data here
+  setData(e){
+    const ENTER = 13;
+    const newDataList={
+      id:uuid.v4(),
+      title:e.target.value,
+      complete:false
+    }
+    if(e.keyCode===ENTER && e.target.value!=''){
+      this.setState({
+        dataList: [...this.state.dataList,newDataList]
+      });
+      e.target.value = '';
+    }
+  }
+
+  //search List
+  searchList(e){
+    this.setState((prevState)=>{
+      
+    });
+  }
+  render(){
+    const listComponent = this.state.dataList.map(item=>{
+      return(
+        <List key={item.id} item={item} changeFunction = {this.handleChange}/>
+      )
+    });
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header/>
+      <SearchBar search={this.searchList}/>
+      
+      {listComponent}
+      <AddTodo insertData = {this.setData}/>
     </div>
-  );
+  );}
 }
 
 export default App;
