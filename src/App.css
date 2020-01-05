@@ -30,11 +30,15 @@
   color: #61dafb;
 }
 .header{
-  width: 100%;
   margin: 0 auto;
   color: white;
-  line-height: 80px;
   padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 50px;
+
 }
 
 .left{
@@ -44,7 +48,7 @@
   float: right;
 }
 .add-todo-wrapper{
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   margin-top: 5px;
   clear: both;
@@ -53,21 +57,36 @@
   width: 100%;
   border: 1px solid white;
   border-radius: 5px;
-  padding: 10px; 
-  font-size: 15px;
+  padding: 10px 0;
   
 }
+.search-bar{
+  width: 50%;
+  padding: 10px;
+}
 
-.list{
+.listunchecked{
   
   background-color: white;
-  width: 100%;
- 
+  width: calc(100%-5px) ;
   overflow: auto;
   margin: 0 auto;
   margin-top:5px ;
-  border: 1px solid white;
+  border-left: 5px solid rgb(219, 71, 49);
   border-radius: 5px;
+  
+  
+}
+.listchecked{
+  
+  background-color: white;
+  width: calc(100%-5px) ;
+  overflow: auto;
+  margin: 0 auto;
+  margin-top:5px ;
+  border-left: 5px solid #6dedad;
+  border-radius: 5px;
+  
   
 }
 .listCollection{
@@ -95,6 +114,9 @@
 }
 .checkBox{
   float: right;
+}
+.tabs{
+  cursor: pointer;
 }
 
 

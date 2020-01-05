@@ -12,8 +12,8 @@ class List extends React.Component{
             this.status="unchecked";
         }
         return(
-            <div className="list">
-                <div className="tag"></div>
+            <div className={"list"+this.status}>
+                {/* <div className="tag"></div> */}
                 <div className="listCollection">
                     <span className={"listDetail"+this.status}>{this.props.item.title}</span>
                     <input 

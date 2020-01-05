@@ -6,6 +6,7 @@ import Header from './components/Header';
 import AddTodo from './components/AddTodo';
 import SearchBar from './components/SearchBar';
 import uuid from 'uuid';
+import Tabs from './components/Tabs';
 
 
 class App extends React.Component {
@@ -13,13 +14,16 @@ class App extends React.Component {
     super();
     this.state={
       dataList: data,
-      searchText:data
+      searchText:data,
+      showAll: true,
+      showComplete: false,
+      showIncomplete: false
     }
   }
   //check item here
   handleChange= (id) =>{
     this.setState(prevState=>{
-      const newList = prevState.dataList.map(item=>{
+      const newList = prevState.searchText.map(item=>{
         if(item.id===id){
           return{
             ...item,
@@ -30,7 +34,8 @@ class App extends React.Component {
         return item;
       });
       return{
-        dataList: newList,
+        dataList:newList,
+        searchText: newList
         
       }
     });
@@ -38,7 +43,6 @@ class App extends React.Component {
   }
   //insert data here
   setData=(e)=>{
-    console.log(e.target.value);
     const ENTER = 13;
     const newDataList={
       id:uuid.v4(),
@@ -51,6 +55,16 @@ class App extends React.Component {
         searchText:[...this.state.dataList,newDataList]
       });
       e.target.value = '';
+    }
+  }
+  //tab control
+  tabControl = (buttonName) =>{
+    if(buttonName==='showAll'){
+      this.setState({
+        showAll:true,
+        showComplete:false,
+        showIncomplete:false
+      })
     }
   }
 
@@ -73,11 +87,18 @@ class App extends React.Component {
         <List key={item.id} item={item} changeFunction = {this.handleChange}/>
       )
     });
-    console.log(listComponent);
     return (
     <div className="App">
-      <Header/>
-      <SearchBar search={this.searchList}/>
+      <div className="header">
+        <Header/>
+        <SearchBar search={this.searchList}/>
+      </div>
+      <div>
+          <Tabs name="Show All"/>
+          <Tabs name="Show Complete"/>
+          <Tabs name="Show Inomplete"/>
+      </div>
+      
       <AddTodo insertData = {this.setData}/>
       {listComponent}
       
