@@ -12,7 +12,8 @@ class App extends React.Component {
   constructor(){
     super();
     this.state={
-      dataList: data
+      dataList: data,
+      searchText:data
     }
   }
   //check item here
@@ -57,19 +58,20 @@ class App extends React.Component {
       return item.title.toLowerCase().includes(e.target.value.toLowerCase());
         
     });
-    const searchArrNew = searchArr.map(item=>{
-      return item;
-    });
+    this.setState({
+      searchText:searchArr
+    })
 
     
   }
 
   render(){
-    const listComponent = this.state.dataList.map(item=>{
+    const listComponent = this.state.searchText.map(item=>{
       return(
         <List key={item.id} item={item} changeFunction = {this.handleChange}/>
       )
     });
+    console.log(listComponent);
     return (
     <div className="App">
       <Header/>
