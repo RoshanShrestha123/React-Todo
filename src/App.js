@@ -30,7 +30,8 @@ class App extends React.Component {
         return item;
       });
       return{
-        dataList: newList
+        dataList: newList,
+        
       }
     });
      
@@ -46,7 +47,8 @@ class App extends React.Component {
     }
     if(e.keyCode===ENTER && e.target.value!==''){
       this.setState({
-        dataList: [...this.state.dataList,newDataList]
+        dataList: [...this.state.dataList,newDataList],
+        searchText:[...this.state.dataList,newDataList]
       });
       e.target.value = '';
     }
