@@ -121,14 +121,15 @@ class App extends React.Component {
     <div className="App">
       <div className="header">
         <Header/>
-        <SearchBar search={this.searchList}/>
-      </div>
-      <div>
+        <div className="tab-wrapper">
           <Tabs name="showAll" handleTabChange={this.handleTabChange} title={"show all"}/>
           <Tabs name="showComplete" handleTabChange={this.handleTabChange} title={"show Complete"}/>
           <Tabs name="showIncomplete" handleTabChange={this.handleTabChange} title={"show Incomplete"}/>
       </div>
-      
+        
+      </div>
+     
+      <SearchBar search={this.searchList}/>
       <AddTodo insertData = {this.setData}/>
       {listComponent}
       

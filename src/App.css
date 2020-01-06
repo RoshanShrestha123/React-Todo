@@ -2,20 +2,22 @@
 .App{
   width: 80%;
   margin: 0 auto;
+  padding: 20px;
 }
 
 .header{
-  margin: 0 auto;
-  color: white;
   padding: 10px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  line-height: 50px;
+
+
 
 }
-
+.header-title{
+  font-size: 30px;
+}
 .left{
   float: left;
 }
@@ -25,7 +27,7 @@
 .add-todo-wrapper{
   width: 100%;
   margin: 0 auto;
-  margin-top: 5px;
+  margin-bottom: 20px;
   clear: both;
 }
 .input-field{
@@ -38,36 +40,51 @@
 .search-bar{
   width: 50%;
   padding: 10px;
-}
+  float: right;
+  margin-bottom: 10px;
 
-.listunchecked{
-  
+}
+.list{
+  clear: both;
   background-color: white;
-  width: calc(100%-5px) ;
+  padding: 10px;
+  width: calc(100% - 20px) ;
   overflow: auto;
   margin: 0 auto;
   margin-top:5px ;
   border-left: 5px solid rgb(219, 71, 49);
   border-radius: 5px;
+  box-shadow: 0 2px 5px #d4d4d4;
+  
   
   
 }
-.listchecked{
-  
-  background-color: white;
-  width: calc(100%-5px) ;
-  overflow: auto;
-  margin: 0 auto;
-  margin-top:5px ;
-  border-left: 5px solid #6dedad;
-  border-radius: 5px;
-  
-  
+
+.unchecked{
+  border-left: 5px solid #f0134d;  
+}
+.checked{
+  border-left: 5px solid #40bfc1;
 }
 .listCollection{
-  padding: 10px;
-  float: right;
-  width: 95%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-between;
+  font-size: 20px;
+  height: 30px;
+
+}
+.list-detail{
+  
+}
+.checkBox{
+  cursor: pointer;
+  margin-right: 10px;
+}
+.icon{
+  cursor: pointer;
 }
 .tag{
   float: left;
@@ -77,23 +94,29 @@
 }
 .listDetailchecked{
   font-size: 12px;
-  float: left;
+
   text-decoration: line-through;
   transition: 200ms;
 
 }
 .listDetailunchecked{
   font-size: 20px;
-  float: left;
   transition: 100ms;
 }
-.checkBox{
-  float: right;
-}
+
 .tabs{
   cursor: pointer;
   padding: 10px;
   margin: 10px;
   background-color: white;
+  color:black;
+  width: 150px;
+  border:1px solid white;
+  border-top:2px solid darkslateblue;
+}
+.tab-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 

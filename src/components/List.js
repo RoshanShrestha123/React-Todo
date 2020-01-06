@@ -1,4 +1,6 @@
 import React from "react";
+import editImg from "../edit.png";
+import calendar from "../calendar.png";
 
 class List extends React.Component{
     constructor(){
@@ -12,15 +14,22 @@ class List extends React.Component{
             this.status="unchecked";
         }
         return(
-            <div className={"list"+this.status}>
-                {/* <div className="tag"></div> */}
+            <div className={"list "+this.status} >
                 <div className="listCollection">
-                    <span className={"listDetail"+this.status}>{this.props.item.title}</span>
-                    <input 
-                    className="checkBox right" 
-                    type="checkbox" checked={this.props.item.complete} 
-                    onChange={(e)=>this.props.changeFunction(this.props.item.id)}>
-                    </input>
+                    <div className="list-detail">
+                        <input 
+                            className="checkBox"
+                            onChange={(e)=>this.props.changeFunction(this.props.item.id)}
+                            type="checkbox" checked={this.props.item.complete}>
+                        </input>
+                        <span className={"listDetail"+this.status}>{this.props.item.title}</span>
+                        
+                    </div>
+                    <div className="icon"> 
+                    <img src={calendar}></img>
+                    </div>
+                    
+
                 </div>
                 
             </div>
