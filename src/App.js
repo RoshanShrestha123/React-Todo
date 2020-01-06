@@ -15,9 +15,9 @@ class App extends React.Component {
     this.state={
       dataList: data,
       searchText:data,
-      showAll: true,
-      showComplete: false,
-      showIncomplete: false
+      showAll:true,
+      showComplete:false,
+      showIncomplete:false
     }
   }
   //check item here
@@ -57,35 +57,65 @@ class App extends React.Component {
       e.target.value = '';
     }
   }
-  //tab control
-  tabControl = (buttonName) =>{
-    if(buttonName==='showAll'){
+  
+
+  //search List
+  searchList=(e)=>{
+    const searchArr = this.state.dataList.filter(item => {
+      return item.title.toLowerCase().includes(e.target.value.toLowerCase());  
+    });
+    this.setState({
+      searchText:searchArr
+    })
+  }
+
+  handleTabChange= (btnName) => {
+    console.log("btn working");
+    if(btnName==='showAll'){
       this.setState({
         showAll:true,
         showComplete:false,
         showIncomplete:false
       })
-    }
-  }
-
-  //search List
-  searchList=(e)=>{
-    const searchArr = this.state.dataList.filter(item => {
-      return item.title.toLowerCase().includes(e.target.value.toLowerCase());
-        
-    });
-    this.setState({
-      searchText:searchArr
-    })
-
-    
+    }else if (btnName==='showComplete') {
+      this.setState({
+        showAll:false,
+        showComplete:true,
+        showIncomplete:false
+      })
+    }else if (btnName==='showIncomplete') {
+      this.setState({
+        showAll:false,
+        showComplete:false,
+        showIncomplete:true
+      })
+    } 
   }
 
   render(){
     const listComponent = this.state.searchText.map(item=>{
-      return(
-        <List key={item.id} item={item} changeFunction = {this.handleChange}/>
-      )
+      if(this.state.showAll){
+        return(
+          <List key={item.id} item={item} changeFunction = {this.handleChange}/>
+        )
+      }
+      if(this.state.showComplete){
+        if(item.complete){
+          return(
+            <List key={item.id} item={item} changeFunction = {this.handleChange}/>
+          )
+        }
+        
+      }
+      if(this.state.showIncomplete){
+        if(item.complete===false){
+          return(
+            <List key={item.id} item={item} changeFunction = {this.handleChange}/>
+          )
+        }
+        
+      }
+      
     });
     return (
     <div className="App">
@@ -94,9 +124,9 @@ class App extends React.Component {
         <SearchBar search={this.searchList}/>
       </div>
       <div>
-          <Tabs name="Show All"/>
-          <Tabs name="Show Complete"/>
-          <Tabs name="Show Inomplete"/>
+          <Tabs name="showAll" handleTabChange={this.handleTabChange} title={"show all"}/>
+          <Tabs name="showComplete" handleTabChange={this.handleTabChange} title={"show Complete"}/>
+          <Tabs name="showIncomplete" handleTabChange={this.handleTabChange} title={"show Incomplete"}/>
       </div>
       
       <AddTodo insertData = {this.setData}/>
